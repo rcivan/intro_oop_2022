@@ -8,14 +8,27 @@ class Point:
         self.y = y
 
     def dist_to(self, p):
-        pass
+        return sqrt((p.x - self.x) ** 2 + (p.y - self.y) ** 2)
 
     def abs(self):
-        pass
+        return sqrt(self.x ** 2 + self.y ** 2)
+
+    def __str__(self):
+      return f"({self.x}, {self.y})"
 
 
 class Rectangle:
-    pass
+  
+    def __init__(self, p1, p2):
+      self.p1 = Point(p1.x,p1.y)
+      self.p2 = Point(p2.x,p2.y)
+
+    def area(self):
+      return abs((self.p1.x-self.p2.x) * (self.p1.y-self.p2.y))
+
+    def center(self):
+      center = Point((self.p1.x+self.p2.x)/2, (self.p1.y+self.p2.y)/2)
+      return center
 
 
 def main():
@@ -25,6 +38,9 @@ def main():
     p2 = Point(-1.0, 6.5)
     print(f"It is a distance {p1.dist_to(p2):.5} away from the point ({p2.x}, {p2.y}).")
 
+    r1 = Rectangle(p1,p2)
+    print(f"the area of the rectangle represented by these points is {r1.area()}, and the center point is {r1.center()}")
+  
 
 if __name__ == "__main__":
     main()
